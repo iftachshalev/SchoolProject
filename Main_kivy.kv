@@ -1,0 +1,137 @@
+WindowManager:
+    MyFloatLayout:
+    ErrorWindow:
+    success:
+    Error:
+    Error2:
+
+<MyFloatLayout>:
+    name: "main"
+
+    attempts: attempts
+    inp: inp
+    btn: btn
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        Label:
+            id: attempts
+            text: 'You have 3 attempts to enter a password.\nEach wrong attempt takes you 5 minutes.\nyou can enter only numbers.'
+            font_size: 20
+
+        GridLayout:
+            cols: 2
+            size: root.width, root.height
+
+            Label:
+                text: 'password:'
+                font_size: 40
+
+            TextInput:
+                id: inp
+                multiline: False
+                focus: True
+
+        GridLayout:
+            cols: 1
+            size: root.width, root.height
+
+            Button:
+                id: btn
+                text: 'send password'
+                font_size: 60
+                on_press:
+                    root.onsendbtn()
+                    root.manager.transition.direction = "left"
+
+
+
+<ErrorWindow>:
+    name: "error"
+
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        Label:
+            text: 'Mistake!!!'
+            font_size: 80
+
+        Button:
+            id: btn
+            text: 'go back'
+            font_size: 60
+            on_press:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+
+<success>:
+    name: "success"
+    GridLayout:
+        halign: 'center'
+        cols: 1
+        size: root.width, root.height
+
+        Label:
+            text: 'Well done!!!\nYou succeeded!!!'
+            font_size: 80
+
+        Button:
+            id: btn
+            text: 'to see the hint!'
+            font_size: 90
+            on_press: root.hintpop()
+
+
+<Error>:
+    tec: tec
+    name: "err"
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+        Label:
+            text: 'You have no more attempts.\n you lost 10 minutes'
+            font_size: 50
+        GridLayout:
+            cols: 2
+            size: root.width, root.height
+            Label:
+                text: 'password:'
+                font_size: 40
+            TextInput:
+                id: tec
+        GridLayout:
+            cols: 1
+            size: root.width, root.height
+            Button:
+                text: 'send'
+                font_size: 50
+                on_press: root.btn()
+
+
+<Error2>:
+    name: 'err2'
+    GridLayout:
+        cols: 1
+        size: root.width, root.height
+
+        Label:
+            text: 'Mistake!!!'
+            font_size: 80
+
+        Button:
+            id: btn
+            text: 'go back'
+            font_size: 60
+            on_press:
+                app.root.current = "err"
+                root.manager.transition.direction = "left"
+
+<P>:
+    Label:
+        text: "the lovely hint is...323232!!!"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
+        font_size: 30
