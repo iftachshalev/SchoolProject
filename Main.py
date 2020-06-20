@@ -1,4 +1,5 @@
 import ctypes
+import cv2
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -6,6 +7,19 @@ from kivy.uix.popup import Popup
 from kivy.uix.floatlayout import FloatLayout
 from kivy.lang import Builder
 global num
+
+
+class Video(object):
+    def __init__(self,path):
+        self.path = path
+
+    def play(self):
+        from os import startfile
+        startfile(self.path)
+
+class Movie_MP4(Video):
+    type = "MP4"
+
 
 class MyFloatLayout(Screen):
     password = 12345678
@@ -91,7 +105,9 @@ class Error2(Screen):
 class success(Screen):
 
     def hintpop(self):
-        popup()
+        movie = Movie_MP4(r"C:\Users\User\Dropbox\all_my_en_and_dris\programer\Prog\pycharm projects\SchoolProject\ddd.mp4")
+        movie.play()
+        # popup()
 
 
 
